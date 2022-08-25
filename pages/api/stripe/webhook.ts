@@ -39,17 +39,30 @@ const verifyStripeSignature =
     }
   }
 
+const handleCheckoutSession = ({
+  client_reference_id
+}: Stripe.Checkout.Session) =>
+  console.log(
+    client_reference_id
+      ? `[CHECKOUT] ${client_reference_id}`
+      : `[CHECKOUT] No reference!`
+  )
+
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ message: string }>,
   event: Stripe.Event
 ) {
-  const permittedEvents: [string?] = []
+  const permittedEvents: [string?] = ['checkout.session.completed']
 
   if (req.method === 'POST') {
     if (permittedEvents.includes(event.type)) {
       try {
         switch (event.type) {
+          case 'checkout.session.completed':
+            return handleCheckoutSession(
+              event.data.object as Stripe.Checkout.Session
+            )
           default:
             throw new Error(`Unhhandled event: ${event.type}`)
         }
