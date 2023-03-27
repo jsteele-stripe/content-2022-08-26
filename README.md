@@ -1,6 +1,6 @@
 ## What's new in Checkout and Payment Links?
 
-> August 26th 2022 • [YouTube](youtube.com/watch?v=HNzzCVNC3HM)
+> August 26th 2022 • [YouTube](https://youtube.com/watch?v=HNzzCVNC3HM)
 
 In this edition, we cover:
 * [Localised prices](https://stripe.com/docs/payments/checkout/present-local-currencies?platform=multi-currency-prices) with Checkout.
